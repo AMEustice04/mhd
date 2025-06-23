@@ -1,0 +1,88 @@
+\documentclass[11pt]{report}
+
+\usepackage{preamble}
+
+\begin{document}
+
+\begin{chapter}{First Project}
+	\begin{section}{The MHD Equations}
+
+		\begin{definition}
+		\label{mhd-eqns}
+			The MHD equations are:
+			\begin{align*}
+				&\vec{u}_t + \vec{u} \cdot \grad \vec{u} =
+					\vec{b} \cdot \grad \vec{b} \\
+				&\vec{b}_t + \vec{u} \cdot \grad \vec{b} =
+					\vec{b} \cdot \grad \vec{u} \\
+				&\div{\vec{u}} = \div{b} = 0
+			\end{align*}
+		\end{definition}
+
+		\begin{definition}
+		\label{stag-point}
+			The stagnation-point forms are:
+			\begin{align*}
+				&\vec{u}(x, \vec{x}, t) =
+					(u(x, t), -\frac{\vec{x}}{n - 1} u_x(x, t)) \\
+				&\vec{b}(x, \vec{x}, t) =
+					(b(x, t), -\frac{\vec{x}}{n - 1} u_x(x, t)) 	
+			\end{align*}
+		\end{definition}
+		
+		\begin{result}
+			Substituting definition~\ref{stag-point} into definition~\ref{mhd-eqns},
+			for the momentum equation, we get
+			\begin{equation*}
+				\vec{u}_t +
+					(u(x, t), -\frac{\vec{x}}{n - 1} u_x(x, t)) \cdot \grad \vec{u}
+				= -\vec{P}_x +
+					(b(x, t) -\frac{\vec{x}}{n - 1} b_x(x, t)) \cdot \grad \vec{b}
+				\tag{$i = 1$}
+			\end{equation*}
+
+			\begin{equation*}
+				\begin{split}
+					-\frac{x_i}{n - 1} u_{xt} &+
+					(u(x, t), -\frac{x_i}{n - 1} u_x(x, t))
+						\cdot (-\frac{x_i}{n - 1} u_{xx}(x, t), -u_x(x, t)) \\
+					&= -P_{xx_i} + (b(x, t), -\frac{x_i}{n - 1} b_x(x, t))
+						\cdot (-\frac{x_i}{n - 1} b_{xx}(x, t), -b_x(x, t))
+				\end{split}
+				\tag{$i > 1$}
+			\end{equation*}
+
+			Similarly, for the magnetic field equation,
+			\begin{equation*}
+				\vec{b}_t +
+					(u(x, t), -\frac{\vec{x}}{n - 1} u_x(x, t)) \cdot \grad \vec{b}
+				= (b(x, t) -\frac{\vec{x}}{n - 1} b_x(x, t)) \cdot \grad \vec{u}
+				\tag{$i = 1$}
+			\end{equation*}
+			
+			\begin{equation*}
+				\begin{split}
+					-\frac{x_i}{n - 1} b_{xt} &+
+					(u(x, t), -\frac{x_i}{n - 1} u_x(x, t))
+						\cdot (-\frac{x_i}{n - 1} b_{xx}(x, t), -b_x(x, t)) \\
+					&= (b(x, t), -\frac{x_i}{n - 1} b_x(x, t))
+						\cdot (-\frac{x_i}{n - 1} u_{xx}(x, t), -u_x(x, t))
+				\end{split}
+				\tag{$i > 1$}
+			\end{equation*}
+		\end{result}
+		
+		\begin{result}
+			Now, from the definition of the material derivative,
+			\begin{equation*}
+				\vec{u}_t + u(x, t) * u_{xx}(x, t) = -P_x + b(x, t) * b_x
+			\end{equation*}
+			and
+			\begin{equation*}
+				\vec{b}_t + u(x, t) * b_x(x, t) = b(x, t) * u_x(x, t)
+			\end{equation*}
+			for $i = 1$.
+		\end{result}
+	\end{section}
+\end{chapter}
+\end{document}
