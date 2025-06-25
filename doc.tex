@@ -4,15 +4,14 @@
 
 \begin{document}
 
-\begin{chapter}{First Project}
-	\begin{section}{The MHD Equations}
-
+\chapter*{First Project}
+	\section*{06-05}
 		\begin{definition}
 		\label{mhd-eqns}
 			The MHD equations are:
 			\begin{align*}
 				&\vec{u}_t + \vec{u} \cdot \grad \vec{u} =
-					\vec{b} \cdot \grad \vec{b} \\
+					-\grad \vec{P} + \vec{b} \cdot \grad \vec{b} \\
 				&\vec{b}_t + \vec{u} \cdot \grad \vec{b} =
 					\vec{b} \cdot \grad \vec{u} \\
 				&\div{\vec{u}} = \div{b} = 0
@@ -31,6 +30,7 @@
 		\end{definition}
 		
 		\begin{result}
+		\label{stag-point-sub}
 			Substituting definition~\ref{stag-point} into definition~\ref{mhd-eqns},
 			for the momentum equation, we get
 			\begin{equation*}
@@ -46,7 +46,7 @@
 					-\frac{x_i}{n - 1} u_{xt} &+
 					(u(x, t), -\frac{x_i}{n - 1} u_x(x, t))
 						\cdot (-\frac{x_i}{n - 1} u_{xx}(x, t), -u_x(x, t)) \\
-					&= -P_{xx_i} + (b(x, t), -\frac{x_i}{n - 1} b_x(x, t))
+					&= -P_{x_i} + (b(x, t), -\frac{x_i}{n - 1} b_x(x, t))
 						\cdot (-\frac{x_i}{n - 1} b_{xx}(x, t), -b_x(x, t))
 				\end{split}
 				\tag{$i > 1$}
@@ -73,16 +73,39 @@
 		\end{result}
 		
 		\begin{result}
+		\label{use-material-deriv}
 			Now, from the definition of the material derivative,
 			\begin{equation*}
-				\vec{u}_t + u(x, t) * u_{xx}(x, t) = -P_x + b(x, t) * b_x
+				\vec{u}_t + u(x, t) * u_{xx}(x, t) = -\vec{P}_x + b(x, t) * b_x
 			\end{equation*}
 			and
 			\begin{equation*}
 				\vec{b}_t + u(x, t) * b_x(x, t) = b(x, t) * u_x(x, t)
 			\end{equation*}
 			for $i = 1$.
+
+			\newpage
+			
+			Similarly,
+			\begin{equation*}
+				\begin{split}
+					-\frac{x_i}{n - 1} u_{xt}(x, t) &-
+						\frac{x_i}{n - 1} u(x, t) * u_{xx}(x, t) +
+						\frac{x_i}{(n - 1)^2} u_x(x, t) * u_x(x, t) \\ 
+					&= -P_{x_i} - \frac{x_i}{n- 1} b(x, t) * b_{xx}(x, t)
+						+ \frac{x_i}{(n - 1)^2} b_x(x, t) * b_x(x, t)
+				\end{split}
+			\end{equation*}
+			for $i > 1$.
 		\end{result}
-	\end{section}
-\end{chapter}
+	
+	\section*{06-06}
+	From result~\ref{use-material-deriv}, we get
+	\begin{equation*}
+		\frac{n - 1}{x_i} P_{x_i} = u_{xt} + u u_{xx} - \frac{1}{n - 1} u_x^2 - b
+		b_{xx} + \frac{1}{n - 1} b_x^2
+	\end{equation*}
+
+	\section*{06-23}
+
 \end{document}
